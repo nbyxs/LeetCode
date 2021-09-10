@@ -16,6 +16,6 @@ package LeetCode.DP;
 public class NO343IntegerBreak {
     public int integerBreak(int n) {
 
-return  1;
+        return 1;
     }
 }
