@@ -19,7 +19,7 @@ import java.util.Map;
 链接：https://leetcode-cn.com/problems/ransom-note
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
-public class NO383 {
+public class NO383RansomNote {
     public static boolean canConstruct(String ransomNote, String magazine) {
 
         if(ransomNote.length()>magazine.length())return false;
