@@ -2,7 +2,7 @@
 
 
 ## 几乎每道题提交记录超过**100%**
-### Each module 各模块：
+### 各模块 Each module：
 
 # 数组 Array
 
