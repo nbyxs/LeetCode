@@ -11,6 +11,7 @@ package LeetCode.DP;
 链接：https://leetcode-cn.com/problems/unique-paths
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
+//dp[a][b]表示到坐标（a，b）有多少种方法）
 public class NO62UniquePaths {
     public static int uniquePaths(int m, int n) {
         int[][] dp=new int[m+1][n+1];
