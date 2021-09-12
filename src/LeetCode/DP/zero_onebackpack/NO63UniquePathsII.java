@@ -1,4 +1,4 @@
-package LeetCode.DP;
+package LeetCode.DP.zero_onebackpack;
 
 public class NO63UniquePathsII {
     public static int uniquePathsWithObstacles(int[][] path) {

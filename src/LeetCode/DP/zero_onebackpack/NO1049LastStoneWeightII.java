@@ -1,4 +1,4 @@
-package LeetCode.DP;
+package LeetCode.DP.zero_onebackpack;
 /*
 有一堆石头，用整数数组 stones 表示。其中 stones[i] 表示第 i 块石头的重量。
 每一回合，从中选出任意两块石头，然后将它们一起粉碎。假设石头的重量分别为 x 和 y，且 x <= y。那么粉碎的可能结果如下：

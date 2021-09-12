@@ -1,4 +1,4 @@
-package LeetCode.DP;
+package LeetCode.DP.zero_onebackpack;
 /*
 给你一个整数数组 nums 和一个整数 target 。
 向数组中的每个整数前添加 '+' 或 '-' ，然后串联起所有整数，可以构造一个 表达式 ：

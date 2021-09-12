@@ -1,4 +1,4 @@
-package LeetCode.DP;
+package LeetCode.DP.zero_onebackpack;
 
 import static java.lang.Math.incrementExact;
 import static java.lang.Math.min;
