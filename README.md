@@ -46,6 +46,6 @@ https://github.com/nbyxs/LeetCode/tree/master/src/LeetCode/StackandQueue
 
 每一模块下java文件名对应力扣**题目编号**及**名称**
 
-同时附有题目描述和链接
+同时附有题目描述，链接以及复习方法部分，便于复习（当然取决于我复习到哪，嘿嘿嘿）
 
 题目和模块持续更新ing.....
