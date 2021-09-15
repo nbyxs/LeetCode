@@ -18,6 +18,7 @@ package LeetCode.DP;
  */
 public class NO188BestTimetoBuyandSellStockIV {
     public static int maxProfit(int k, int[] prices) {
+        if(prices.length<=1)return 0;
         int[][] dp=new int[prices.length+1][2*k+1];
         for(int i=0;i<2*k+1;++i){
             if((i&1)==0)dp[0][i]=0;
