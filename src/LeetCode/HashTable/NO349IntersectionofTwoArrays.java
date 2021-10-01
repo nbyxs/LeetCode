@@ -1,9 +1,7 @@
 package LeetCode.HashTable;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.lang.reflect.Array;
+import java.util.*;
 
 /*
 给定两个数组，编写一个函数来计算它们的交集。
@@ -33,11 +31,36 @@ public class NO349IntersectionofTwoArrays {
         for(int num:res)array[index++]=num;
         return array;
     }
+    public  static int[] intersection_review(int[] nums1, int[] nums2){
+        Arrays.sort(nums1);
+        Arrays.sort(nums2);
+        int n=nums1.length;
+        int m=nums2.length;
+       int[] res=new int[Math.min(n,m)];
+       int l1=0;
+       int l2=0;
+       int index=0;
+       while (l1<n&&l2<m){
+           if(nums1[l1]==nums2[l2]){
+               //插入元素的唯一性
+              if(index==0||nums1[l1]!=res[index-1]){
+                  res[index++]=nums1[l1];
+              }
+               ++l1;
+               ++l2;
+           }
+           else  if(nums1[l1]<nums2[l2])++l1;
+           else ++l2;
+
+
+       }
+       return Arrays.copyOfRange(res,0,index);
+    }
 
     public static void main(String[] args) {
         int[] nums1={1,1};
         int[] nums2={2,2};
-        int[] res=intersection(nums1,nums2);
+        int[] res=intersection_review(nums1,nums2);
         for(int i=0;i<res.length;++i ) System.out.print(res[i]);
 }
 }

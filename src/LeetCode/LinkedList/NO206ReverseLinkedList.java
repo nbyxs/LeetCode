@@ -24,7 +24,18 @@ while(temp!=null){
 }
 return pre;
     }
-
+    public static ListNode reverseList_review(ListNode head){
+          if(head==null)return null;
+          ListNode tail=null;
+         ListNode temp=head;
+          while (head!=null){
+             head=head.next;
+             temp.next=tail;
+             tail=temp;
+             temp=head;
+          }
+          return tail;
+    }
     public static void main(String[] args) {
         ListNode l1=new ListNode(1);
           ListNode l2=new ListNode(2);
@@ -37,22 +48,23 @@ return pre;
         l3.next=l4;
         l4.next=l5;
         l5.next=l6;
-//        while(l1!=null){
-//            System.out.println(l1.val);
-//            l1=l1.next;
-//        }
-        System.out.println("+++++++++++++++++++++++++++");
-      l1.next=l2.next;
-      l2.next=l1;
-        while(l2!=null){
-            System.out.println(l2.val);
-            l2=l2.next;
+        ListNode l7=l1;
+        while(l1!=null){
+            System.out.println(l1.val);
+            l1=l1.next;
         }
-     //   ListNode head=reverseList(l1);
-        System.out.println("++++++++++++++++++");
-//        while(head!=null){
-//            System.out.println(head.val);
-//            head=head.next;
+//        System.out.println("+++++++++++++++++++++++++++");
+//      l1.next=l2.next;
+//      l2.next=l1;
+//        while(l2!=null){
+//            System.out.println(l2.val);
+//            l2=l2.next;
 //        }
+       ListNode head=reverseList_review(l7);
+        System.out.println("++++++++++++++++++");
+        while(head!=null){
+            System.out.println(head.val);
+            head=head.next;
+        }
     }
 }

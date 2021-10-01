@@ -27,7 +27,22 @@ public class NO24SwapNodesinPairs {
         }
         return dummyHead.next;
     }
+    public static ListNode swapPairs_review(ListNode head){
+        if(head==null||head.next==null)return head;
 
+        ListNode temp=new ListNode(0,head);
+        ListNode t=temp;
+        while (temp.next!=null&&temp.next.next!=null){
+            ListNode left=temp.next;
+            ListNode right=temp.next.next;
+            left.next=right.next;
+            right.next=left;
+            //不改，temp.next ==left;
+            temp.next=right;
+            temp=left;
+        }
+        return t.next;
+    }
     public static void main(String[] args) {
         ListNode l1=new ListNode(1);
         ListNode l2=new ListNode(2);
@@ -40,7 +55,7 @@ public class NO24SwapNodesinPairs {
         l3.next=l4;
         l4.next=l5;
         l5.next=l6;
-        ListNode head=swapPairs(l1);
+        ListNode head=swapPairs_review(l1);
         while(head!=null){
             System.out.println(head.val);
             head=head.next;

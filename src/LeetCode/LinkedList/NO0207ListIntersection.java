@@ -1,4 +1,7 @@
 package LeetCode.LinkedList;
+
+import com.sun.org.apache.xpath.internal.objects.XNull;
+
 /*
 给你两个单链表的头节点 headA 和 headB ，
 请你找出并返回两个单链表相交的起始节点。如果两个链表没有交点，返回 null 。
@@ -27,7 +30,29 @@ public class NO0207ListIntersection {
         }
         return null;
     }
-
+    public static ListNode getIntersectionNode_review(ListNode headA, ListNode headB){
+        if(headA==null||headB==null)return null;
+        ListNode La=headA;
+        ListNode Lb=headB;
+        while (headA!=null&&headB!=null){
+            headA=headA.next;
+            headB=headB.next;
+        }
+        while (headA!=null){
+            headA=headA.next;
+            La=La.next;
+        }
+        while (headB!=null){
+            headB=headB.next;
+            Lb=Lb.next;
+        }
+        while (La!=null&&Lb!=null){
+            if(La.val==Lb.val)return La;
+            La=La.next;
+            Lb=Lb.next;
+        }
+        return null;
+    }
     public static void main(String[] args) {
         ListNode l1=new ListNode(1);
         ListNode l2=new ListNode(2);
@@ -51,7 +76,7 @@ public class NO0207ListIntersection {
         t3.next=t4;
         t4.next=t5;
         t5.next=t6;
-        ListNode head1=getIntersectionNode(l1,t1);
+        ListNode head1=getIntersectionNode_review(l1,t1);
         while(head1!=null){
             System.out.println(head1.val);
             head1=head1.next;

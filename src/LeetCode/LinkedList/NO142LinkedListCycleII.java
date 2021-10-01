@@ -30,5 +30,23 @@ public class NO142LinkedListCycleII {
         }
     return null;
     }
+    public static ListNode detectCycle_review(ListNode head){
+        if(head==null)return null;
+        ListNode slow =head;
+        ListNode fast=head;
+        while (fast.next!=null&&fast.next.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+            if(slow==fast){
+                fast=head;
+               while (fast!=slow){
+                   fast=fast.next;
+                   slow=slow.next;
+               }
+               return fast;
+            }
+        }
+        return null;
+    }
 
 }

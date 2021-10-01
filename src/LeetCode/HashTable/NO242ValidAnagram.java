@@ -31,11 +31,29 @@ public class NO242ValidAnagram {
         }
         return true;
     }
-
+    public static boolean isAnagram_review(String s, String t){
+        int Ls=s.length();
+        int Lt=t.length();
+//异位词先决条件 长度相同
+        if(Ls!=Lt)return false;
+        int[] number= new  int[30];
+        for(int i=0;i<Ls;++i){
+            ++number[s.charAt(i)-'a'];
+        }
+        for(int i=0;i<Lt;++i){
+         //存在t的特定字母多于s特定字母
+            if((--number[t.charAt(i)-'a'])<0)return false;
+        }
+        //之前已判断t存在特定字母多于s特定字母且s t长度相同
+        //即有多用的字母就有少用的字母，所以无需判断t存在特定字母少于s特定字母
+        // for(int i=0;i<26;++i)if(number[i]>0)return false;
+        return true;
+    }
     public static void main(String[] args) {
-        String a="anagram";
-        String t= "nagaram";
-        System.out.println(isAnagram(a,t));
+        String a="aacc";
+        String t= "accc";
+        System.out.println();
+        System.out.println(isAnagram_review(a,t));
 
 
     }

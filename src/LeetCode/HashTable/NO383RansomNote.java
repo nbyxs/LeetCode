@@ -36,7 +36,18 @@ public class NO383RansomNote {
         }
         return true;
     }
-
+    public static boolean canConstruct_review(String ransomNote, String magazine){
+        int[] array = new int[26];
+        for (char ch : magazine.toCharArray()) {
+            array[ch - 'a']++;
+        }
+        // 合二为一
+        for (char ch : ransomNote.toCharArray()) {
+            if (--array[ch - 'a'] < 0)
+                return false;
+        }
+        return true;
+    }
     public static void main(String[] args) {
         String a="aac";
         String b="aab";

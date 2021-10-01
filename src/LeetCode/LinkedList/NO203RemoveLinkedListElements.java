@@ -22,7 +22,22 @@ public class NO203RemoveLinkedListElements {
        return dyhead.next;
 
     }
+    public static  ListNode removeElements_review(ListNode head, int val){
+        if(head==null)return null;
+        ListNode temp=new ListNode(0);
+        temp.next=head;
+        ListNode t=temp;
+        while (head!=null){
+            if(head.val==val){
+                temp.next=head.next;
 
+            }
+             else temp=temp.next;
+            head=head.next;
+        }
+
+        return t.next;
+    }
     public static void main(String[] args) {
         ListNode l1=new ListNode(1);
         ListNode l2=new ListNode(2);
@@ -37,7 +52,7 @@ public class NO203RemoveLinkedListElements {
         l5.next=l6;
         ListNode l7=l1;
 
-        ListNode head=removeElements(l7,4);
+        ListNode head=removeElements_review(l7,4);
         System.out.println("++++++++++++++++++");
         while(head!=null){
             System.out.println(head.val);
