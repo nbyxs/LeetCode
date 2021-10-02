@@ -47,7 +47,7 @@ public class NO116PopulatingNextRightPointersinEachNode {
     //方法2
     public Node connect1(Node root) {
         if (root == null) {
-            return root;
+            return null;
         }
 
         // 从根节点开始
@@ -78,6 +78,34 @@ public class NO116PopulatingNextRightPointersinEachNode {
 
         return root;
     }
-
-
+    public Node connect_review(Node root){
+        if(root==null)return null;
+        Node r=root;
+        Queue<Node> queue=new LinkedList<>();
+        queue.offer(root);
+        while (!queue.isEmpty()){
+            int length=queue.size();
+            while (length>0){
+                root=queue.poll();
+                if(root.left!=null)queue.offer(root.left);
+                if(root.right!=null)queue.offer(root.right);
+               if(length>1)root.next=queue.peek();
+               --length;
+            }
+        }return r;
+    }
+    public Node connect1_review(Node root){
+        if(root==null)return null;
+        Node temp=root;
+       while (temp.left!=null){
+           Node head=temp;
+           while (head!=null){
+               head.left.next=head.right;
+               if(head.next!=null)
+                   head.right.next=head.next.left;
+               head=head.next;
+           }
+           temp=temp.left;
+       }return root;
+    }
 }

@@ -52,4 +52,12 @@ public class NO226InvertBinaryTree {
         root.left=root.right;
         root.right=t;
     }
+    private void dfs_review(TreeNode root){
+        if(root==null)return;
+        if(root.left!=null)dfs_review(root.left);
+        if(root.right!=null)dfs_review(root.right);
+        TreeNode temp=root.left;
+        root.left=root.right;
+        root.right=temp;
+    }
 }

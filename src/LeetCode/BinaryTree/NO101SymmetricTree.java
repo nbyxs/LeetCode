@@ -52,5 +52,11 @@ public class NO101SymmetricTree {
 
         return root.val==root1.val&&check(root.left,root1.right)&&check(root.right,root1.left);
     }
+    private boolean check_review(TreeNode root, TreeNode root1){
+
+        if(root==null&&root1==null)return true;
+        if(root==null||root1==null)return false;
+        return root.val==root1.val&&check_review(root.left,root1.left)&&check_review(root.right,root1.right);
+    }
 
 }

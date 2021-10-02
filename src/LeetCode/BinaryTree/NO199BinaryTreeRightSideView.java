@@ -57,4 +57,20 @@ public class NO199BinaryTreeRightSideView {
 
         }return list;
     }
+    public List<Integer> rightSideView_review(TreeNode root){
+        List<Integer> list=new ArrayList<>();
+        if(root==null)return list;
+        Queue<TreeNode> queue=new LinkedList<>();
+        queue.offer(root);
+        while (!queue.isEmpty()){
+            int length=queue.size();
+            while (length>0){
+                root=queue.poll();
+                if(root.left!=null)queue.offer(root.left);
+                if(root.right!=null)queue.offer(root.right);
+                if(length==1)list.add(root.val);
+                --length;
+            }
+        }return list;
+    }
 }

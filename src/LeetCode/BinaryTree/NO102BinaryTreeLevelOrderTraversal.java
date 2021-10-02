@@ -1,9 +1,6 @@
 package LeetCode.BinaryTree;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 /*
 给你一个二叉树，请你返回其按 层序遍历 得到的节点值。 （即逐层地，从左到右访问所有节点）。
@@ -39,7 +36,9 @@ public class NO102BinaryTreeLevelOrderTraversal {
     }
     public List<List<Integer>> levelOrder(TreeNode root) {
 
+
         List<List<Integer>> res=new ArrayList<>();
+        if(root==null)return res;
         bfs(res,root);
         return res;
     }
@@ -61,4 +60,22 @@ public class NO102BinaryTreeLevelOrderTraversal {
             res.add(new ArrayList<>(list));
         }
     }
+    private void bfs_review(List<List<Integer>> res, TreeNode root){
+        Queue<TreeNode> queue=new LinkedList<>();
+        queue.offer(root);
+        while (!queue.isEmpty()){
+            int length=queue.size();
+            List<Integer> list=new ArrayList<>();
+            while (length>0){
+
+                root=queue.poll();
+                if(root.left!=null)queue.offer(root.left);
+                if(root.right!=null)queue.offer(root.right);
+                --length;
+                list.add(root.val);
+            }
+            res.add(new ArrayList<>(list));
+        }
+    }
+
 }
