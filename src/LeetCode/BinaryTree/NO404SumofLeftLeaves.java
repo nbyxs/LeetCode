@@ -45,4 +45,15 @@ public class NO404SumofLeftLeaves {
         return sum;
 
     }
+    public int sumOfLeftLeaves_review(TreeNode root) {
+
+        if(root==null)return 0;
+        int left=sumOfLeftLeaves(root.left);
+        int right=sumOfLeftLeaves(root.right);
+        int mid=0;
+        if(root.left!=null&&root.left.left==null&&root.left.right==null)mid+=root.left.val;
+        int sum=left+right+mid;
+        return sum;
+
+    }
 }

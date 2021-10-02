@@ -43,7 +43,28 @@ public class NO222CountCompleteTreeNodes {
             right=right.right;
             ++rightDepth;
         }
-        if(rightDepth==leftDepth)return (2<<leftDepth)-1;
+        if(rightDepth==leftDepth)return (1<<leftDepth)-1;
          return 1+countNodes(root.left)+countNodes(root.right);
+    }
+    public int countNodes1(TreeNode root){
+        if(root==null)return 0;
+        return countNodes1(root.left)+countNodes1(root.right)+1;
+    }
+    public int countNodes_review(TreeNode root){
+        if(root==null)return 0;
+        TreeNode left=root;
+        TreeNode right=root;
+        int leftDept=0;
+        int rightDepth=0;
+        while (left!=null){
+            left=left.left;
+            ++leftDept;
+        }
+        while (right!=null){
+            right=right.right;
+            ++rightDepth;
+        }
+        if(leftDept==rightDepth)return (1<<rightDepth)-1;
+        return 1+countNodes_review(root.left)+countNodes_review(root.right);
     }
 }

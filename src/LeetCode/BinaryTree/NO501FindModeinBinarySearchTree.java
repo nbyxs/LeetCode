@@ -63,7 +63,7 @@ public class NO501FindModeinBinarySearchTree {
     private void Find(TreeNode root) {
         if(root==null)return;
         Find(root.left);
-        if(pre.val==root.val)++count;
+        if(pre!=null&&pre.val==root.val)++count;
         else count=1;
         pre=root;
         if(count==MaxCount)list.add(root.val);
@@ -73,5 +73,21 @@ public class NO501FindModeinBinarySearchTree {
             MaxCount=count;
         }
         Find(root.right);
+    }
+    private void Find_review(TreeNode root){
+        if(root==null)return;
+        Find_review(root.left);
+        if(pre!=null){
+            if(pre.val==root.val)++count;
+        }
+        else count=1;
+        if(count==MaxCount)list.add(root.val);
+        else if(count>MaxCount){
+            list.clear();
+            MaxCount=count;
+            list.add(root.val);
+        }
+        pre=root;
+        Find_review(root.right);
     }
 }

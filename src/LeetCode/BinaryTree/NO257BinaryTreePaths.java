@@ -39,7 +39,7 @@ public class NO257BinaryTreePaths {
         List<String>  list=new ArrayList<>();
         if(root==null)return list;
       StringBuffer path=new StringBuffer();
-        inorder(list,root,path);
+        inorder_review(list,root,path);
         return list;
     }
 
@@ -56,6 +56,21 @@ public class NO257BinaryTreePaths {
       inorder(list,root.right,path);
       path.delete(len,path.length());
         }
+    private static void inorder_review(List<String> list, TreeNode root, StringBuffer path){
+        if(root==null)return;
+        if(root.left==null&&root.right==null){
+            path.append(root.val);
+            list.add(path.toString());
+            System.out.println(list.toString());
+            return;
+        }
+        System.out.println(path);
+        int len=path.length();
+        path.append(root.val).append("->");
+        inorder_review(list,root.left,path);
+        inorder_review(list,root.right,path);
+        path.delete(len,path.length());
+    }
 
     public static void main(String[] args) {
         TreeNode t1=new TreeNode(1);

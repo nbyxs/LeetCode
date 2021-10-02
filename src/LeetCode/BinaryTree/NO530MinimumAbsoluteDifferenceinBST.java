@@ -43,7 +43,7 @@ public class NO530MinimumAbsoluteDifferenceinBST {
     }
     public int getMinimumDifference(TreeNode root) {
 
-       num(root);
+       num_review(root);
         return result;
     }
 
@@ -56,5 +56,14 @@ public class NO530MinimumAbsoluteDifferenceinBST {
         pre=root;
         num(root.right);
 
+    }
+    private void num_review(TreeNode root){
+        if (root==null)return ;
+        num(root.left);
+        if(pre!=null){
+            result=Math.min(result,root.val-pre.val);
+        }
+        pre=root;
+        num(root.right);
     }
 }
