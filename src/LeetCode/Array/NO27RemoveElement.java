@@ -29,16 +29,16 @@ public class NO27RemoveElement {
         return  l;
     }
     public static int removeElement1(int[] nums, int val){
-        int l=0;
-        int r=nums.length;
-        while(l<r){
-            if(nums[l]==val){
-                nums[l]=nums[r-1];
-                --r;
-            }
-            else ++l;
+        int left=0;
+        int right=nums.length;
+        int index=0;
+        while (left<right) {
+        if(nums[left]==val){
+            nums[left]=nums[right-1];
+            --right;
         }
-        return l;
+        else ++left;
+        }return left;
     }
 
 
@@ -47,5 +47,7 @@ public class NO27RemoveElement {
        int lenght= removeElement1(array,3);
 
        for(int i=0;i<lenght;i++) System.out.print(array[i]+" ");
+        System.out.println();
+        for(int i=0;i<array.length;i++) System.out.print(array[i]+" ");
     }
 }

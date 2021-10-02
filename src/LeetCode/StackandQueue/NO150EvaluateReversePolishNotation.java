@@ -1,8 +1,10 @@
 package LeetCode.StackandQueue;
 
+import com.sun.imageio.plugins.common.I18N;
+
 import java.util.Stack;
 
-import static com.alibaba.druid.util.StringUtils.isNumber;
+
 
 
 /*
@@ -52,9 +54,34 @@ public class NO150EvaluateReversePolishNotation {
         }
         return list_number.pop();
     }
-
+    public static int evalRPN_review(String[] tokens){
+        Stack<Integer> stack=new Stack<>();
+        for(String index:tokens){
+            if(isNumber(index)){
+                stack.push(Integer.parseInt(index));
+            }
+            else {
+                int b=stack.pop();
+                int a=stack.pop();
+                switch (index){
+                    case "+": stack.push(a+b);
+                    break;
+                    case "-":stack.push(a-b);
+                    break;
+                    case "*":stack.push(a*b);
+                    break;
+                    default:stack.push(a/b);
+                }
+            }
+        }
+        return stack.pop();
+    }
+    public static boolean isNumber(String s){
+        return (!"+".equals(s))&&(!"-".equals(s))&&(!"*".equals(s))&&(!"/".equals(s));
+    }
     public static void main(String[] args) {
         String[] list={"2","1","+","3","*"};
         System.out.println( evalRPN(list));
+        System.out.println( evalRPN_review(list));
     }
 }

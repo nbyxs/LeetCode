@@ -18,16 +18,16 @@ import java.util.Stack;
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
 public class NO232ImplementQueueusingStacks {
-   static Stack<Integer> stack1=null;
-   static Stack<Integer> stack2=null;
-    public NO232ImplementQueueusingStacks() {
+   private static Stack<Integer> stack1=null;
+   private static Stack<Integer> stack2=null;
+    private NO232ImplementQueueusingStacks() {
 
          stack1=new Stack<>();
          stack2=new Stack<>();
     }
 
     /** Push element x to the back of queue. */
-    public static  void push(int x) {
+    private static  void push(int x) {
         stack1.push(x);
     }
 
@@ -47,18 +47,17 @@ public class NO232ImplementQueueusingStacks {
     }
 
     /** Returns whether the queue is empty. */
-    public boolean empty() {
+    private boolean empty() {
 
-        return (stack1.isEmpty()&&stack2.isEmpty()?true:false);
+        return (stack1.isEmpty() && stack2.isEmpty());
     }
     //若输出栈为空则将输入栈的全部数据依次弹出并压入输出栈，这样输出栈从栈顶往栈底的顺序就是队列从队首往队尾的顺序。
-    public  void move(){
-        if(stack2.isEmpty()==true){
-            while(stack1.isEmpty()==false){
+    private void move(){
+        if(stack2.isEmpty()){
+            while(!stack1.isEmpty()){
                 stack2.push(stack1.pop());
             }
         }
-        else return;
     }
 
     public static void main(String[] args) {

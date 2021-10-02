@@ -34,6 +34,7 @@ public class NO225ImplementStackusingQueues {
        queue1=queue2;
        queue2=temp;
 
+
     }
 
     /** Removes the element on top of the stack and returns that element. */

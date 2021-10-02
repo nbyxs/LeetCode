@@ -38,11 +38,25 @@ public class NO239SlidingWindowMaximum {
             if(i>=k-1)res[index++]=nums[q[hh]];
         }return res;
     }
-
+    public static int[] maxSlidingWindow_review(int[] nums, int k){
+        if(k==1)return nums;
+        int n=nums.length;
+        int[] res=new int[n-k+1];
+        int[] s=new int[n];
+        int h=0;
+        int t=-1;
+        int index=0;
+        for(int i=0;i<n;++i){
+            if(h<=t&&s[h]<i-k+1)++h;
+            while (h<=t&&nums[s[t]]<nums[i])--t;
+            s[++t]=i;
+            if(i>=k-1)res[index++]=nums[s[h]];
+        }return res;
+    }
     public static void main(String[] args) {
         int[] a={1,3,-1,-3,5,3,6,7};
         int k=3;
-        int[] res=maxSlidingWindow(a,k);
+        int[] res=maxSlidingWindow_review(a,k);
         for(int n:res) System.out.print(n);
     }
 }

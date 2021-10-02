@@ -43,10 +43,24 @@ public class NO20ValidParentheses {
         }
         return list.isEmpty();
     }
-
+    public static boolean isValid_review(String s){
+        char[] c=s.toCharArray();
+        int n=c.length;
+        if((n&1)==1)return false;
+        Stack<Character> stack=new Stack<>();
+        for(int i=0;i<n;++i){
+            if(!stack.isEmpty()){
+                char t=stack.peek();
+                if((c[i]==')'&&t=='(')||(c[i]=='}'&&t=='{')||(c[i]==']'&&t=='['))stack.pop();
+                else  stack.push(c[i]);
+            }
+            else  stack.push(c[i]);
+        }
+        return stack.isEmpty();
+    }
     public static void main(String[] args) {
-        String a="()}";
+        String a="({[)";
         System.out.println(3&1);
-        System.out.println(isValid(a));
+        System.out.println(isValid_review(a));
     }
 }

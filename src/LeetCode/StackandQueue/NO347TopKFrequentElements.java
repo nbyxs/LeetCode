@@ -1,5 +1,7 @@
 package LeetCode.StackandQueue;
 
+import org.omg.PortableInterceptor.INACTIVE;
+
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
@@ -21,20 +23,17 @@ public class NO347TopKFrequentElements {
         for(int num:nums){
             list.put(num,list.getOrDefault(num,0)+1);
         }
-        return  select(list,k);
+        return  select_review(list,k);
     }
 
     private static int[] select(Map<Integer, Integer> list, int k) {
-        PriorityQueue<int[]> queue=new PriorityQueue<int[]>(new Comparator<int[]>() {
-            public int compare(int[] m, int[] n) {
-                return m[1] - n[1];
-            }
-        });
+        PriorityQueue<int[]> queue= new PriorityQueue<>((m, n) -> m[1] - n[1]);
 
         for(Map.Entry<Integer, Integer> l:list.entrySet()){
 
             int key=l.getKey();int value=l.getValue();
            if(queue.size()==k){
+               assert queue.peek() != null;
                int value1=queue.peek()[1];
                if(value1<value){
                    queue.poll();
@@ -50,5 +49,37 @@ public class NO347TopKFrequentElements {
             res[index++]=queue.poll()[0];
         }
         return res;
+    }
+    private static int[] select_review(Map<Integer, Integer> list, int k){
+        PriorityQueue<int[]> queue=new PriorityQueue<>((m,n)->m[1]-n[1]);
+        for(Map.Entry<Integer, Integer> index:list.entrySet()){
+            int key=index.getKey();
+            int val=index.getValue();
+            if(queue.size()==k){
+                assert queue.peek() != null;
+                if(queue.peek()[1]<val){
+                    queue.poll();
+                    queue.offer(new int[]{key,val});
+                }
+
+            } else queue.offer(new int[]{key,val});
+        }
+        int[] res=new int[k];
+        int index=0;
+        while (!queue.isEmpty()){
+            res[index++]=queue.poll()[0];
+        }
+        return res;
+    }
+
+    public static void main(String[] args) {
+
+        int[] a={1,1,1,2,2,3};
+        int k=2;
+        int[] res=topKFrequent(a,k);
+        for (int index:res
+             ) {
+            System.out.println(index);
+        }
     }
 }
