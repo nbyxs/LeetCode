@@ -10,59 +10,38 @@ import java.util.List;
 
 public class NO46Permutations {
 
-    public static List<List<Integer>> permute(int[] nums) {
-        Boolean[] str=new Boolean[nums.length];
-        for (int i=0;i< nums.length;++i)str[i]=false;
-        List<List<Integer>> res=new ArrayList<>();
-       List<Integer> list=new ArrayList<>();
-        permute1(res,nums,str,list,0);
-     return  res;
+    static boolean[] str=null;
+    static  int n=0;
+    static List<Integer> list = new ArrayList<Integer>();
+    static List<List<Integer>> res = new ArrayList<List<Integer>>();
+    public static List<List<Integer>> permute(int[] nums){
+
+        n=nums.length;
+        str=new boolean[n];
+        dfs(0,nums);
+        return res;
     }
 
-    private static void permute1(List<List<Integer>> res, int[] nums, Boolean[] str, List<Integer> list, int index) {
-       if(index>=nums.length){
-           System.out.println(list.toString());
-           res.add(new ArrayList<Integer>(list));
-           return;
-       }
-       for(int i=0;i<nums.length;++i){
-           if(!str[i]){
-               list.add(nums[i]);
-               str[i]=true;
-               permute1(res,nums,str,list,index+1);
-               str[i]=false;
-               list.remove(index);
-
-           }
-       }
-
-    }
-    public static List<List<Integer>> permute1(int[] nums){
-        Boolean[] str=new Boolean[nums.length];
-        for (int i=0;i< nums.length;++i)str[i]=false;
-        List<List<Integer>> res=new ArrayList<>();
-        List<Integer> list=new ArrayList<>();
-        permute11(res,nums,str,list,0);
-        return  res;
-    }
-    private static void permute11(List<List<Integer>> res, int[] nums, Boolean[] str, List<Integer> list, int index){
-        if(index==nums.length){
+    private static void dfs(int index,int[] nums) {
+        if(index==n){
             res.add(new ArrayList<>(list));
             return;
         }
-        for(int i=0;i<nums.length;++i){
+        for(int i=0;i<n;++i){
             if(!str[i]){
                 str[i]=true;
                 list.add(nums[i]);
-                permute11(res,nums,str,list,index+1);
+                dfs(index+1,nums);
                 str[i]=false;
                 list.remove(list.size()-1);
             }
         }
     }
+
+
     public static void main(String[] args) {
         int[] a={1,2,3,4};
-        List<List<Integer>> list=permute1(a);
+        List<List<Integer>> list=permute(a);
         for(List<Integer> list1:list) System.out.println(list1.toString());
         System.out.println(list.size());
 

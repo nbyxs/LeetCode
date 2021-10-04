@@ -15,63 +15,41 @@ import java.util.List;
 
 public class NO40CombinationSumII {
 
-
-
-    public static List<List<Integer>> combinationSum2(int[] candidates, int target) {
-        List<List<Integer>> res = new ArrayList<>();
-       if(candidates.length==0)return  res;
-       Arrays.sort(candidates);
-       List<Integer> list=new ArrayList<>();
-       dfs(res,list,candidates,target,0);
-       return  res;
+    private static List<List<Integer>> res=new ArrayList<List<Integer>>();
+    private static List<Integer> list=new ArrayList<>();
+    private  static  int n=0;
+    public static List<List<Integer>> combinationSum(int[] a, int target) {
+        n=a.length;
+        Arrays.sort(a);
+      dfs(a,target,0);
+      return res;
     }
 
-    private static void dfs(List<List<Integer>> res,List<Integer> list, int[] candidates, int target, int begin) {
-        if(target==0){
-            res.add(new ArrayList<Integer>(list));
-            return;
-        }
-        for(int i=begin;i<candidates.length;++i){
-            if(i>begin&&candidates[i]==candidates[i-1])continue;
-            if(target-candidates[i]>=0){
-                list.add(candidates[i]);
-                dfs(res,list,candidates,target-candidates[i],i+1);
-                list.remove(list.size()-1);
-            }
-        }
-    }
-
-    public static List<List<Integer>> combinationSum21(int[] candidates, int target){
-        List<List<Integer>> res = new ArrayList<>();
-        if(candidates.length==0)return  res;
-        Arrays.sort(candidates);
-        List<Integer> list=new ArrayList<>();
-        dfs1(res,list,candidates,target,0);
-        return  res;
-    }
-    private static void dfs1(List<List<Integer>> res,List<Integer> list, int[] candidates, int target, int begin){
+    private static void dfs(int[] a, int target, int index) {
         if(target==0){
             res.add(new ArrayList<>(list));
             return;
         }
-        if(begin>=candidates.length)return;
-        for(int i=begin;i<candidates.length;++i){
-            if(i>begin&&candidates[i]==candidates[i-1])continue;
-            if(target-candidates[i]>=0){
-                list.add(candidates[i]);
-                dfs(res,list,candidates,target-candidates[i],i+1);
+        if(index>=n)return;
+
+        for(int i=index;i<n;++i){
+            if(i>index&&a[i]==a[i-1])continue;
+            if(target-a[i]>=0){
+                list.add(a[i]);
+                dfs(a,target-a[i],i+1);
                 list.remove(list.size()-1);
             }
         }
-
     }
+
     public static void main(String[] args) {
         int[] a={2,5,2,1,2};
         int target=5;
-        List<List<Integer>> res=combinationSum2(a,target);
+        List<List<Integer>> res=combinationSum(a,target);
         for(List<Integer> list:res) System.out.println(list.toString());
-        System.out.println("++++++++++++++++");
-        List<List<Integer>> res1=combinationSum21(a,target);
-        for(List<Integer> list:res1) System.out.println(list.toString());
+
+
     }
+
+
 }

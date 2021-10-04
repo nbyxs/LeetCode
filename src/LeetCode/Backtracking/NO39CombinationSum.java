@@ -12,56 +12,43 @@ candidates 中的数字可以无限制重复被选取。如果至少一个所选
 
  */
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class NO39CombinationSum {
-    public static List<List<Integer>> combinationSum(int[] candidates, int target) {
+   private static List<List<Integer>> res=new ArrayList<List<Integer>>();
+   private static List<Integer> list=new ArrayList<>();
+ private  static  int n=0;
+    private static List<List<Integer>> combinationSum(int[] a, int target) {
+        n=a.length;
 
-        List<List<Integer>> res=new ArrayList<List<Integer>>();
-        List<Integer> list=new ArrayList<>();
-        if(candidates.length==0)return  res;
-        dfs(res,list,0,target,candidates);
-        return  res;
+        dfs(a,0,target);
+        return res;
     }
 
-    private static void dfs(List<List<Integer>> res, List<Integer> list, int index, int target, int[] candidates) {
+    private static void dfs(int[] a,int l,int target) {
+
+
+
         if(target==0){
             res.add(new ArrayList<>(list));
             return;
         }
-        if(index>=candidates.length)return;
-        dfs(res,list,index+1,target,candidates);
-        if(target-candidates[index]>=0){
-            list.add(candidates[index]);
-            dfs(res,list,index,target-candidates[index],candidates);
-            list.remove(list.size()-1);
-        }
-    }
-    public static List<List<Integer>> combinationSum1(int[] candidates, int target){
-        List<List<Integer>> res=new ArrayList<List<Integer>>();
-        List<Integer> list=new ArrayList<>();
-        if(candidates.length==0)return  res;
-        dfs1(res,list,0,target,candidates);
-        return  res;
-    }
-    private static void dfs1(List<List<Integer>> res, List<Integer> list, int index, int target, int[] candidates){
-        if(target==0){
-            res.add(new ArrayList<>(list));
-            return;
-        }
-        if(index>=candidates.length)return;
-        if(target-candidates[index]>=0){
-            list.add(candidates[index]);
-              dfs1(res,list,index,target-candidates[index],candidates);
-              list.remove(list.size()-1);
-        }
-        dfs1(res,list,index+1,target,candidates);
 
+        if(l>=n)return;
+      if(target-a[l]>=0){  list.add(a[l]);
+       dfs(a,l,target-a[l]);
+       list.remove(list.size()-1);
+      }
+       dfs(a,l+1,target);
     }
+
     public static void main(String[] args) {
         int[] a={2,3,5};
         int target=8;
-        List<List<Integer>> res=combinationSum1(a,target);
+        List<List<Integer>> res=combinationSum(a,target);
         for(List<Integer> list:res) System.out.println(list.toString());
     }
+
+
 }

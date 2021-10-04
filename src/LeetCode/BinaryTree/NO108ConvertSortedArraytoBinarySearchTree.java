@@ -42,4 +42,13 @@ public class NO108ConvertSortedArraytoBinarySearchTree {
         t.right=sortedArrayToBST(nums,mid+1,right);
         return t;
     }
+    private TreeNode sortedArrayToBST_review(int[] nums, int left, int right){
+        if (right-left<1)return null;
+        if(right-left==1)return new TreeNode(nums[left]);
+        int mid=left+(right-left)/2;
+        TreeNode root=new TreeNode(nums[mid]);
+        root.left=sortedArrayToBST_review(nums,left,mid);
+        root.right=sortedArrayToBST_review(nums,mid+1,right);
+        return root;
+    }
 }

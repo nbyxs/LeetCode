@@ -10,11 +10,12 @@ import java.util.List;
  */
 
 public class NO77Combinations {
+    //力扣提交要将去除static修饰符
     private static List<List<Integer>> res=new ArrayList<>();
    private static List<Integer> list=new ArrayList<>();
     public static List<List<Integer>> combine(int n, int k) {
 
-        search(1,n,k);
+        search_review(1,n,k);
         return  res;
     }
 
@@ -29,6 +30,29 @@ public class NO77Combinations {
         search(index+1,n,k);
         list.remove(list.size()-1);
         search(index+1,n,k);
+    }
+    private static void search_review(int index, int n, int k){
+        if(list.size()+(n-index+1)<k)return;
+       //先将list加入res再判断index和n的大小，否则当index=5时，此时以4结尾的list都不能加入结果集
+        /*
+           if(index>n)return;
+           if(list.size()==k){
+            res.add(new ArrayList<>(list));
+            return;
+        }
+         */
+        if(list.size()==k){
+            res.add(new ArrayList<>(list));
+            return;
+        }
+
+        if(index>n)return;
+        list.add(index);
+        //将index加入队列
+        search_review(index+1,n,k);
+        list.remove(list.size()-1);
+        //不将index加入队列
+        search_review(index+1,n,k);
     }
 
 

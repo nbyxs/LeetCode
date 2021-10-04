@@ -31,14 +31,18 @@ public class NO701InsertintoaBinarySearchTree {
     }
     public TreeNode insertIntoBST(TreeNode root, int val) {
 
-        TreeNode t=root;
-        while (!(root.left==null||root.right==null)){
-            if(root.val<val)root=root.right;
-            else root=root.left;
+        TreeNode t=new TreeNode(val);
+        if(root==null)return t;
+        TreeNode pre=root;
+        TreeNode node=root;
+        while (node!=null){
+            pre=node;
+            if(node.val<val)node=node.right;
+            else  node=node.left;
         }
-        System.out.println(root.val);
-        if(root.val<=val)root.right=new TreeNode(val);
-        else root.left=new TreeNode(val);
-        return t;
+        if(pre.val<val)pre.right=t;
+        else  pre.left=t;
+        return root;
+
     }
 }

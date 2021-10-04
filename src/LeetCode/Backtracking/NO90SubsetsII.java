@@ -21,7 +21,7 @@ public class NO90SubsetsII {
     public static List<List<Integer>> subsetsWithDup(int[] nums) {
 
         Arrays.sort(nums);
-        dfs(false, 0, nums);
+        dfs_review(false, 0, nums);
         return res;
     }
 
@@ -37,6 +37,18 @@ public class NO90SubsetsII {
         list.add(nums[cur]);
         dfs(true, cur + 1, nums);
         list.remove(list.size() - 1);
+    }
+    public static void dfs_review(boolean choosePre, int cur, int[] nums){
+        if(cur==nums.length){
+            res.add(new ArrayList<>(list));
+            return;
+        }
+        dfs_review(false,cur+1,nums);
+        //树层去重，如果两个相同的元素前一个没选就选前一个
+        if(!choosePre&&cur>0&&nums[cur-1]==nums[cur])return;
+        list.add(nums[cur]);
+        dfs_review(true,cur+1,nums);
+        list.remove(list.size()-1);
     }
 
     public static void main(String[] args) {

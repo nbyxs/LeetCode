@@ -40,4 +40,12 @@ public class NO669TrimaBinarySearchTree {
         return root;
 
     }
+    public TreeNode trimBST_review(TreeNode root, int low, int high){
+        if(root==null)return null;
+        if(root.val<low)return trimBST_review(root.right,low,high);
+        if(root.val>high)return trimBST_review(root.left,low,high);
+        root.left=trimBST_review(root.left,low,high);
+        root.right=trimBST_review(root.right,low,high);
+        return root;
+    }
 }
