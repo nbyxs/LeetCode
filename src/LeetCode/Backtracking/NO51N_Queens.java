@@ -3,49 +3,57 @@ package LeetCode.Backtracking;
 import java.util.*;
 
 public class NO51N_Queens {
-   public static List<List<String>> solveNQueens(int n){
-       List<List<String>> res=new ArrayList<>();
-       int[] queue=new int[n];
-       Arrays.fill(queue,-1);
-       Set<Integer> x=new HashSet<>();
-       Set<Integer> y=new HashSet<>();
-       Set<Integer> z=new HashSet<>();
-       search(res,n,0,queue,x,y,z);
-       return res;
-   }
 
-    private static void search(List<List<String>> res, int n, int row, int[] queue,Set<Integer> x, Set<Integer> y, Set<Integer> z) {
-        if (n == row) {
-            List<String> list=make(queue,n);
-            res.add(list);
+    static List<List<String>> res = new ArrayList<List<String>>();
+   static Set<Integer> set_x=new HashSet<>();
+   static Set<Integer> set_y=new HashSet<>();
+   static Set<Integer> set_z=new HashSet<>();
+    static int[] queue=null;
+   
+    private static List<List<String>> solveNQueens(int n) {
+        queue=new int[n];
+        Arrays.fill(queue,-1);
+        dfs(0,n);
+        return res;
+
+    }
+
+    private static void dfs(int row,int n) {
+        if(row==n){
+            res.add(fill(queue,n));
+            return;
         }
         for(int i=0;i<n;++i){
-            int a=row-i,b=row+i;
-            if(x.contains(i))continue;
-            if(y.contains(a))continue;
-            if(z.contains(b))continue;
-            x.add(i);
-            y.add(a);
-            z.add(b);
+
+
+            int y =row-i;
+            int z=i+row;
+            if(set_x.contains(i)||set_y.contains(y)||set_z.contains(z))continue;
             queue[row]=i;
-            search(res,n,row+1,queue,x,y,z);
-            x.remove(i);
-            y.remove(a);
-            z.remove(b);
+            set_x.add(i);
+            set_y.add(y);
+            set_z.add(z);
+            dfs(row+1,n);
             queue[row]=-1;
+            set_x.remove(i);
+            set_y.remove(y);
+            set_z.remove(z);
+
         }
     }
 
-    private static List<String> make(int[] queue, int n) {
-       List<String> stringList=new ArrayList<>();
-       for(int i=0;i<n;++i){
-           char[] chars=new char[n];
-           Arrays.fill(chars,'.');
-           chars[queue[i]]='Q';
-           stringList.add(new String(chars));
-       }
-       return stringList;
+    public static List<String> fill(int[] queens, int n) {
+        List<String> board = new ArrayList<String>();
+        for (int i = 0; i < n; i++) {
+            char[] row = new char[n];
+            Arrays.fill(row, '.');
+            row[queens[i]] = 'Q';
+            board.add(new String(row));
+        }
+        return board;
+
     }
+
 
     public static void main(String[] args) {
         int n=4;
@@ -53,4 +61,6 @@ public class NO51N_Queens {
         for(List<String> list:lists) System.out.println(list.toString());
 
     }
+
+
 }

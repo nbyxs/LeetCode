@@ -15,28 +15,23 @@ package LeetCode.Greedyalgorithm;
  */
 public class NO376WiggleSubsequence {
     public static int wiggleMaxLength(int[] nums) {
-
-
-        int length=0;
-        int M_length=0;
         int n=nums.length;
-        if(n<=2)return n;
-        int sub=nums[1]-nums[0];
-        int sub1=sub;
-        for (int i=2;i<n;++i){
-            sub1=sub;
-            sub=nums[i]-nums[i-1];
-            if(sub*sub1<0)++length;
-            else {
-                M_length=Math.max(M_length,length);
-                length=0;
+        if(n<2)return n;
+       int preDiff=nums[1]-nums[0];
+       int count=preDiff!=0?2:1;
 
-            }
-            System.out.println("sub1  "+sub1+"   sub"+sub);
+       for(int i=2;i<n;++i){
+           int diff=nums[i]-nums[i-1];
+           if((diff>0&&preDiff<=0)||(diff<0&&preDiff>=0)){
+               ++count;
+               preDiff=diff;
+           }
+       }
+       return count;
         }
-        M_length=Math.max(M_length,length);
-        return M_length;
-    }
+
+
+
 
     public static void main(String[] args) {
         int[] a={1,17,5,10,13,15,10,5,16,8};
