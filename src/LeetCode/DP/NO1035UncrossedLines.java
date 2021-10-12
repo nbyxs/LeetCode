@@ -55,10 +55,26 @@ public class NO1035UncrossedLines {
       return dp[n][m];
 
     }
-
+    public  static  int maxUncrossedLines_review(int[] nums1, int[] nums2){
+        int n=nums1.length;
+        int m=nums2.length;
+        if(n*m==0)return 0;
+        int[][] dp=new int[n+1][m+1];
+        //dp[n][m]=nums1[n-1]-nums2[m-1];
+        int ans=0;
+        for(int i=n-1;i>=0;--i){
+            for(int j=m-1;j>=0;--j){
+                dp[i][j]=Math.max(dp[i+1][j],dp[i][j+1]);
+                if(nums1[i]==nums2[j])dp[i][j]=Math.max(dp[i+1][j+1]+1,dp[i][j]);
+                ans=Math.max(dp[i][j],ans);
+            }
+        }
+        return ans;
+    }
     public static void main(String[] args) {
         int[] a={1,2,4};
         int[] b={1,4,2};
         System.out.println(maxUncrossedLines(a,b));
+        System.out.println(maxUncrossedLines_review(a,b));
     }
 }

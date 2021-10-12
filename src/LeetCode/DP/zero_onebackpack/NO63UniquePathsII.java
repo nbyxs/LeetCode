@@ -32,10 +32,28 @@ public class NO63UniquePathsII {
         }
         return dp[m-1][n-1];
     }
-
+    public static int uniquePathsWithObstacles_review(int[][] path){
+        int m=path.length;
+        int n=path[0].length;
+        int[][] dp=new int[m+1][n+1];
+        for(int i=0;i<m;++i){
+            if(path[i][0]==1)break;
+            dp[i][0]=1;
+        }
+        for(int i=0;i<n;++i){
+            if(path[0][i]==1)break;
+            dp[0][i]=1;
+        }
+        for(int i=1;i<m;++i){
+            for(int j=1;j<n;++j){
+                if(path[i][j]==0)dp[i][j]=dp[i-1][j]+dp[i][j-1];
+            }
+        }
+        return dp[m-1][n-1];
+    }
     public static void main(String[] args) {
         int[][] a={{0,0,0},{0,1,0},{0,0,0}};
         int[][] b={{0,1},{0,0}};
-        System.out.println(uniquePathsWithObstacles(b));
+        System.out.println(uniquePathsWithObstacles_review(b));
     }
 }

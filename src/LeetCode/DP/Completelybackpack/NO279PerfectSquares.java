@@ -1,4 +1,7 @@
 package LeetCode.DP.Completelybackpack;
+
+import java.util.Arrays;
+
 /*
 给定正整数 n，找到若干个完全平方数（比如 1, 4, 9, 16, ...）使得它们的和等于 n。你需要让组成和的完全平方数的个数最少。
 
@@ -30,9 +33,21 @@ public class NO279PerfectSquares {
             }
         return dp[n];
     }
+    public  static int numSquares_review(int n){
+        int[] dp=new int[n+1];
+        Arrays.fill(dp,10000);
+        dp[0]=0;
+        for(int i=1;i<=n/i;++i){
+            for(int j=i*i;j<=n;++j){
 
+                dp[j]=Math.min(dp[j],dp[j-i*i]+1);
+            }
+        }
+        return dp[n];
+    }
     public static void main(String[] args) {
         int n=13;
         System.out.println(numSquares(n));
+        System.out.println(numSquares_review(n));
     }
 }

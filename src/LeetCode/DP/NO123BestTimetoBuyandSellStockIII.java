@@ -24,13 +24,11 @@ package LeetCode.DP;
 
  */
 /*
-0. 没有操作
-
+   0. 没有操作
    1 第一次买入
    2 第一次卖出
    3 第二次买入
    4 第二次卖出
-
 dp[i][j]中 i表示第i天，j为 [0 - 4] 五个状态，dp[i][j]表示第i天状态j所剩最大现金。
  */
 public class NO123BestTimetoBuyandSellStockIII {

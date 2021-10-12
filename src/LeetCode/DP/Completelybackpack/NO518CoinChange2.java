@@ -28,10 +28,19 @@ public class NO518CoinChange2 {
         }
         return dp[amount];
     }
-
+    public  static int change_review(int amount, int[] coins){
+        int n=coins.length;
+        int[] dp=new int[amount+1];
+        dp[0]=1;
+        for(int i=0;i<n;++i){
+            for(int j=coins[i];j<=amount;++j)
+                dp[j]+=dp[j-coins[i]];
+        }
+        return dp[amount];
+    }
     public static void main(String[] args) {
-        int[] a={2};
-        int m=3;
-        System.out.println(change(m,a));
+        int[] a={1,2,5};
+        int m=5;
+        System.out.println(change_review(m,a));
     }
 }

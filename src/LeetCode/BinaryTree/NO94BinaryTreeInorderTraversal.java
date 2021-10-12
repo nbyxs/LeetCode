@@ -8,6 +8,7 @@ import java.util.Stack;
 给定一个二叉树的根节点 root ，返回它的 中序遍历。
  */
 public class NO94BinaryTreeInorderTraversal {
+
     static  class  TreeNode{
         int val;
         TreeNode left;
@@ -22,7 +23,6 @@ public class NO94BinaryTreeInorderTraversal {
             this.right = right;
         }
     }
-
     public List<Integer> inorderTraversal(TreeNode root) {
         List<Integer> list=new ArrayList<>();
         dfs(root,list);

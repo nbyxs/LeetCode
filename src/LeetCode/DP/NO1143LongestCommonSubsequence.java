@@ -30,10 +30,31 @@ public class NO1143LongestCommonSubsequence {
             }
         return dp[n][m];
     }
-
+    public static int longestCommonSubsequence_review(String text1, String text2){
+        int n=text1.length();
+        int m=text2.length();
+        if(n*m==0)return 0;
+        int[][] dp=new int[n+1][m+1];
+        for(int i=1;i<=n;++i){
+            for(int j=1;j<=m;++j){
+                dp[i][j]=Math.max(dp[i][j-1],dp[i-1][j]);
+                if(text1.charAt(i-1)==text2.charAt(j-1)){
+                    dp[i][j]=Math.max(dp[i-1][j-1]+1,dp[i][j]);
+                }
+            }
+        }
+//          for(int i=1;i<=n;++i){
+//            for(int j=1;j<=m;++j){
+//                System.out.print(dp[i][j]+" ");
+//            }
+//            System.out.println();
+//        }
+        return dp[n][m];
+    }
     public static void main(String[] args) {
         String a="abed";
         String b="ad";
         System.out.println(longestCommonSubsequence(a,b));
+        System.out.println(longestCommonSubsequence_review(a,b));
     }
 }

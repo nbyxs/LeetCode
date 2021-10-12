@@ -28,7 +28,24 @@ public class NO583DeleteOperationforTwoStrings {
         }
         return (n+m)-dp[n][m]*2;
     }
+    public  static int minDistance_review(String word1, String word2) {
 
+
+        int n = word1.length();
+        int m = word2.length();
+        if (n == 0) return m;
+        if (m == 0) return n;
+        int[][] dp = new int[n + 1][m + 1];
+        char[] s1=word1.toCharArray();
+        char[] s2=word2.toCharArray();
+        for(int i=1;i<=n;++i){
+            for(int j=1;j<=m;++j){
+                dp[i][j]=Math.max(dp[i][j-1],dp[i-1][j]);
+                if(s1[i-1]==s2[j-1])dp[i][j]=Math.max(dp[i-1][j-1]+1,dp[i][j]);
+            }
+        }return (n+m)-2*dp[n][m];
+
+    }
     public static void main(String[] args) {
         String a="sea";
         String b="eat";

@@ -31,9 +31,23 @@ public class NO416PartitionEqualSubsetSum {
         }
         return dp[target] == target;
     }
-
+    public static boolean canPartition_review(int[] nums){
+        int n=nums.length;
+        if(nums==null||n==0)return false;
+        int sum=0;
+        for(int num:nums)sum+=num;
+        if((sum&1)==1)return false;
+        int target=sum>>1;
+        int[] dp=new int[target+1];
+        for(int i=0;i<n;++i){
+            for(int j=target;j>=nums[i];--j){
+                dp[j]=Math.max(dp[j],dp[j-nums[i]]+nums[i]);
+            }
+        }
+        return dp[target]==target;
+    }
     public static void main(String[] args) {
         int[] a={1,1};
-        System.out.println(canPartition(a));
+        System.out.println(canPartition_review(a));
     }
 }

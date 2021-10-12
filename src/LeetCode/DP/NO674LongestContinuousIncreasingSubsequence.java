@@ -36,7 +36,22 @@ public class NO674LongestContinuousIncreasingSubsequence {
         res=Math.max(res,r-l);
         return res;
     }
+    public static int findLengthOfLCIS_review(int[] nums){
+        int n=nums.length;
+        if(n==1)return 1;
+        int pre=0;
+        int current=0;
+        int count=0;
+        while (current<n-1){
+            if(nums[current]<nums[current+1])++current;
+            else {
+                count=Math.max(count,current-pre+1);
+                pre=++current;
 
+            }
+            count=Math.max(count,current-pre+1);//处理单调数列
+        }return count;
+    }
     public  static  int  length(int[] nums){
         if (nums == null || nums.length == 0) return 0;
         int pre = 1; // pre表示dp[i-1]: 必须以i-1位置结尾的递增子数组长度
@@ -50,7 +65,8 @@ public class NO674LongestContinuousIncreasingSubsequence {
         return ans;
     }
     public static void main(String[] args) {
-        int[] a={5,5};
+        int[] a={1,3,5,4,7};
         System.out.println(findLengthOfLCIS(a));
+        System.out.println(findLengthOfLCIS_review(a));
     }
 }

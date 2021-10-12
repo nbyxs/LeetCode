@@ -34,9 +34,23 @@ public class NO122BestTimetoBuyandSellStockII {
 
 
     }
+    public static  int maxProfit_review(int[] prices){
+        int n=prices.length;
+        if(n==1)return 0;
+        int a=-prices[0];
+        int b=0;
+        for(int i=1;i<n;++i){
+            int t=Math.max(a,b-prices[i]);
+            int t1=Math.max(b,t+prices[i]);
+            a=t;
+            b=t1;
+        }
 
+        return b;
+    }
     public static void main(String[] args) {
         int[] prices={7,1,5,3,6,4};
         System.out.println(maxProfit(prices));
+        System.out.println(maxProfit_review(prices));
     }
 }

@@ -33,9 +33,23 @@ public class NO1049LastStoneWeightII {
         }
         return sum-mid-dp[mid];
     }
-
+    public static  int lastStoneWeightII_review(int[] stones){
+        int n=stones.length;
+        if(n==1)return stones[0];
+        int sum=0;
+        for(int s:stones)sum+=s;
+        int target=sum>>1;
+        int[] dp=new int[target+1];
+        for(int i=0;i<n;++i){
+            for(int j=target;j>=stones[i];--j){
+                dp[j]=Math.max(dp[j],dp[j-stones[i]]+stones[i]);
+            }
+        }
+        return sum-2*dp[target];
+    }
     public static void main(String[] args) {
         int[] a={2,7,4,1,8,1};
         System.out.println(lastStoneWeightII(a));
+        System.out.println(lastStoneWeightII_review(a));
     }
 }

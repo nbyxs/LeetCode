@@ -32,9 +32,17 @@ public class NO198HouseRobber {
         }
         return dp[n];
     }
-
+    public static int rob_review(int[] nums){
+        int n=nums.length;
+        int[] dp=new int[n+1];
+        dp[0]=nums[0];
+       dp[1]=Math.max(nums[1],dp[0]);
+       for(int i=2;i<n;++i)dp[i]=Math.max(dp[i-1],dp[i-2]+nums[i]);
+       return dp[n-1];
+    }
     public static void main(String[] args) {
         int[] a={2,7,9,3,1};
         System.out.println(rob(a));
+        System.out.println(rob_review(a));
     }
 }

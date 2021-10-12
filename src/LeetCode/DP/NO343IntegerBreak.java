@@ -27,4 +27,17 @@ public class NO343IntegerBreak {
 
         return  dp[n];
     }
+    public static int integerBreak_review(int n){
+        if(n==2)return 1;
+        if(n==3)return 2;
+        int number=n%3;
+        int count=n/3;
+        if(number==0)return (int) Math.pow(3,count);
+        if(number==1)return (int) (Math.pow(3,count-1))*4;
+        return (int) (Math.pow(3,count))*2;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(integerBreak_review(8));
+    }
 }

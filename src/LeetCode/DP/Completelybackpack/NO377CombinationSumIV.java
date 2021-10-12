@@ -38,4 +38,21 @@ public class NO377CombinationSumIV {
                 if(i>=nums[j])dp[i]+=dp[i-nums[j]];
         return dp[target];
     }
+    public static int combinationSum4_review(int[] nums, int target){
+        int n=nums.length;
+        int[] dp=new int[target+1];
+        dp[0]=1;
+        for(int j=1;j<=target;++j){
+            for(int i=0;i<n;++i){
+              if(j>=nums[i])  dp[j]+=dp[j-nums[i]];
+            }
+        }
+        return dp[target];
+    }
+
+    public static void main(String[] args) {
+        int[] a={1,2,3};
+        int target=4;
+        System.out.println(combinationSum4_review(a,target));
+    }
 }

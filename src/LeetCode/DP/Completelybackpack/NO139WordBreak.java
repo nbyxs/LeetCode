@@ -39,16 +39,25 @@ public class NO139WordBreak {
             }
         return dp[n];
     }
-
-    private static boolean check(String substring, List<String> wordDict) {
-        for(String s:wordDict)if(s.equals(substring))return true;
-        return false;
+    public static boolean wordBreak_review(String s, List<String> wordDict){
+        Set<String> set=new HashSet<>(wordDict);
+        int n=s.length();
+        boolean[] dp=new  boolean[n+1];
+        for(int i=0;i<=n;++i){
+            for(int j=0;j<i;++j){
+                if(dp[j]&&set.contains(s.substring(j,i))){
+                    dp[i]=true;
+                    break;
+                }
+            }
+        }return dp[n];
     }
+
 
     public static void main(String[] args) {
 
         String s="catandog";
         List<String> list= Arrays.asList("cat", "and","dog");
-        System.out.println(wordBreak(s,list));
+        System.out.println(wordBreak_review(s,list));
     }
 }

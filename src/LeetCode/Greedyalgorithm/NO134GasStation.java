@@ -42,8 +42,49 @@ cost = [3,4,3]
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
 public class NO134GasStation {
-    public int canCompleteCircuit(int[] gas, int[] cost) {
+    //总结：如果x到不了y+1（但能到y），那么从x到y的任一点出发都不可能到达y+1。
+    // 因为从其中任一点出发的话，相当于从0开始加油，
+    // 而如果从x出发到该点则不一定是从0开始加油，可能还有剩余的油。
+    // 既然不从0开始都到不了y+1，那么从0开始就更不可能到达y+1了...
+    public static int canCompleteCircuit(int[] gas, int[] cost) {
+       int n=gas.length;
+       int index=0;
+       while (index<n){
+           int sumGas=0;
+           int sumCost=0;
+           int cnt=0;
+           while (cnt<n){
+               int j=(index+cnt)%n;
+               sumGas+=gas[j];
+               sumCost+=cost[j];
+               if(sumCost>sumGas)break;
+               ++cnt;
 
-        return 0;
+           }
+           if(cnt==n)return index;
+           else  index=index+cnt+1;
+       }
+       return -1;
+
+    }
+    public int canCompleteCircuit_plus(int[] gas, int[] cost) {
+        int curSum = 0;
+        int totalSum = 0;
+        int index = 0;
+        for (int i = 0; i < gas.length; i++) {
+            curSum += gas[i] - cost[i];
+            totalSum += gas[i] - cost[i];
+            if (curSum < 0) {
+                index = (i + 1) % gas.length ;
+                curSum = 0;
+            }
+        }
+        if (totalSum < 0) return -1;
+        return index;
+    }
+    public static void main(String[] args) {
+        int[] gas={2,3,4};
+        int[] cost={3,4,3};
+        System.out.println(canCompleteCircuit(gas,cost));
     }
 }

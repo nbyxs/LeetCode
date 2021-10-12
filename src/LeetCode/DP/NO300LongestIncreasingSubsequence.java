@@ -1,4 +1,7 @@
 package LeetCode.DP;
+
+import java.util.Arrays;
+
 /*
 给你一个整数数组 nums ，找到其中最长严格递增子序列的长度。
 
@@ -38,9 +41,24 @@ public class NO300LongestIncreasingSubsequence {
 
         return dp[0];
     }
+    public static int lengthOfLIS_review(int[] nums){
+        int n=nums.length;
+        if(n==1)return 1;
+        int[] dp=new int[n+1];
+        Arrays.fill(dp,1);
+        for(int i=0;i<n;++i){
+            for(int j=0;j<i;++j){
+                if(nums[i]>nums[j])dp[i]=Math.max(dp[i],dp[j]+1);
 
+            }
+        }
+        int m=0;
+        for(int i=0;i<n;++i)m=Math.max(m,dp[i]);
+        return m;
+    }
     public static void main(String[] args) {
         int[] a={10,9,2,5,37,101,18};
         System.out.println(lengthOfLIS(a));
+        System.out.println(lengthOfLIS_review(a));
     }
 }
