@@ -15,6 +15,8 @@ import java.util.List;
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
 public class NO113PathSumII {
+   static List<List<Integer>> res=new ArrayList<>();
+   static List<Integer> list=new ArrayList<>();
     static class TreeNode{
         int val;
         TreeNode left;
@@ -36,12 +38,10 @@ public class NO113PathSumII {
 
     public  static List<List<Integer>> pathSum(TreeNode root, int targetSum) {
 
-        List<List<Integer>> list=new ArrayList<>();
-        List<Integer> res=new ArrayList<>();
-        if(root==null)return list;
-        search(root,list,res,targetSum);
 
-        return list;
+        if(root==null)return res;
+        search(root,targetSum);
+        return res;
     }
 
     private static void search(TreeNode root, List<List<Integer>> list, List<Integer> res, int targetSum) {
@@ -59,6 +59,18 @@ public class NO113PathSumII {
         search(root.right,list,res,targetSum);
         res.remove(res.size()-1);
 }
+
+    private static void search(TreeNode root, int targetSum){
+        if(root==null||targetSum<0)return;
+        targetSum-=root.val;
+        list.add(root.val);
+        if(root.left==null&&root.right==null&&targetSum==0){
+            res.add(new ArrayList<>(list));
+        }
+        search(root.left,targetSum);
+        search(root.right,targetSum);
+        list.remove(list.size()-1);
+    }
 
     public static void main(String[] args) {
         TreeNode t1=new TreeNode(5);

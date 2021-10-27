@@ -1,6 +1,6 @@
 package LeetCode.LinkedList;
 
-import com.sun.org.apache.xpath.internal.objects.XNull;
+
 
 /*
 给你两个单链表的头节点 headA 和 headB ，

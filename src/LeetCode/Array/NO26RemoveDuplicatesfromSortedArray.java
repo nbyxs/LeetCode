@@ -33,26 +33,21 @@ public class NO26RemoveDuplicatesfromSortedArray {
         return  length;
     }
     public static int removeDuplicates1(int[] nums){
-
-        int low=0;
-        int fast=0;
         int n=nums.length;
-        while(low<n&&fast<n){
-            int fast0=fast;
-            while (fast0<n&&nums[fast]==nums[fast0])++fast0;
-            fast=fast0;
-//            int low0=low;
-//            while(low0<n&&nums[low0]!=nums[low])++low0;
-//            low=low0;
-            int temp=nums[fast-1];
-            nums[fast-1]=nums[low];
-            nums[low++]=temp;
+        if(n<=1)return n;
+        int index=1;
+        int l=1;
+        while (l<n){
+            while (l<n&&nums[index-1]==nums[l])++l;
+            if(nums[index-1]!=nums[l]){
+                nums[index++]=nums[l++];
+            }
         }
-        return low;
+        return index;
     }
 
     public static void main(String[] args) {
-        int[] array={0,0,1,1,1,2,2,3,3,4};
+        int[] array={};
         int length=removeDuplicates1(array);
         //System.out.println();
         for(int i=0;i<length;i++) System.out.print(array[i]+" ");

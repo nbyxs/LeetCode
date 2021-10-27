@@ -1,6 +1,7 @@
 package LeetCode.Greedyalgorithm;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -19,19 +20,26 @@ import java.util.List;
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
 public class No56MergeIntervals {
-    public int[][] merge(int[][] intervals) {
-
-      List<int[]> res=new LinkedList<>();
-        Arrays.sort(intervals, (o1, o2) -> Integer.compare(o1[0], o2[0]));
+    public static int[][] merge(int[][] intervals) {
+        Arrays.sort(intervals, (ints, t1) -> ints[0]-t1[0]);
+        List<int[]> list=new LinkedList<>();
         int start=intervals[0][0];
+        int end=intervals[0][1];
         for(int i=1;i<intervals.length;++i){
-            if(intervals[i][0]>intervals[i-1][1]){
-                res.add(new int[]{start,intervals[i-1][1]});
+            if(end<intervals[i][0]){
+                list.add(new int[]{start,end});
                 start=intervals[i][0];
+                end=intervals[i][1];
             }
-            else intervals[i-1][1]=Math.max(intervals[i-1][1],intervals[i][1]);
+            else end=Math.max(intervals[i][1],end);
         }
-        res.add(new int[]{start,intervals[intervals.length-1][1]});
-        return res.toArray(new int[res.size()][]);
+        list.add(new int[]{start,end});
+        //System.out.println(list.toString());
+        return  list.toArray(new int[list.size()][]);
+    }
+
+    public static void main(String[] args) {
+        int[][] a={{1,3},{2,5},{6,8},{8,10},{12,15}};
+        System.out.println(Arrays.deepToString(merge(a)));
     }
 }
