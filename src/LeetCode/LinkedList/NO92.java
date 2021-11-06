@@ -24,6 +24,30 @@ public class NO92 {
        }
 return dy.next;
     }
+    public static ListNode reverseBetween_review(ListNode head, int left, int right){
+        if(left==right)return head;
+        ListNode pre=new ListNode();
+
+        pre.next=head;
+        ListNode dy=pre;
+        right-=left;
+        ListNode cur=head;
+        ListNode Next=head.next;
+        while (left>1){
+            pre=pre.next;
+            cur=cur.next;
+            Next=Next.next;
+            --left;
+        }
+        while (right>0){
+            cur.next=Next.next;
+            Next.next=pre.next;;
+            pre.next=Next;
+            Next=cur.next;
+            --right;
+        }
+        return dy.next;
+    }
     public static void main(String[] args) {
         ListNode l1=new ListNode(1);
         ListNode l2=new ListNode(2);
@@ -48,11 +72,13 @@ return dy.next;
 //            System.out.println(l2.val);
 //            l2=l2.next;
 //        }
-        ListNode head=reverseBetween(l7,2,4);
+        ListNode head=reverseBetween_review(l7,2,5);
         System.out.println("++++++++++++++++++");
-        while(head!=null){
+        int n=10;
+        while(head!=null&&n>0){
             System.out.print(head.val+" ");
             head=head.next;
+            --n;
         }
     }
 }

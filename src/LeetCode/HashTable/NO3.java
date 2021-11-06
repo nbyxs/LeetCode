@@ -3,6 +3,7 @@ package LeetCode.HashTable;
 import java.util.HashMap;
 import java.util.Map;
 
+
 public class NO3 {
     public  static int lengthOfLongestSubstring(String s) {
         char[] list=s.toCharArray();
@@ -21,10 +22,26 @@ public class NO3 {
        }
        return res;
     }
-
+    public  static int lengthOfLongestSubstring_review(String s){
+        int n=s.length();
+        if(n<=1)return n;
+        HashMap<Character,Integer> map=new HashMap<>();
+        int start=0;
+        int res=0;
+        for(int end=0;end<n;++end){
+            char c=s.charAt(end);
+            if(map.containsKey(c)){
+                start=Math.max(start,map.get(c)+1);
+            }
+            res=Math.max(end-start+1,res);
+            map.put(c,end);
+        }
+        return res;
+    }
     public static void main(String[] args) {
-        String a="dvdf"
+        String a="1234"
                 ;
         System.out.println(lengthOfLongestSubstring(a));
+        System.out.println(lengthOfLongestSubstring_review(a));
     }
 }

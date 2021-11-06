@@ -44,12 +44,11 @@ public class NO236LowestCommonAncestorofBinaryTree {
 
     }
     public TreeNode lowestCommonAncestor_review(TreeNode root, TreeNode p, TreeNode q){
-        if(root==null||root==p||root==q)return root;
+        if(root==null||p==root||root==q)return root;
         TreeNode left=lowestCommonAncestor_review(root.left,p,q);
         TreeNode right=lowestCommonAncestor_review(root.right,p,q);
-        if(left!=null&&right!=null)return root;
-        if(left != null)return left;
-        else if(right != null)return right;
-        else return null;
+        if(left!=null&&right!=null) return root;
+        else if(left==null)return right;
+        else return left;
     }
 }
