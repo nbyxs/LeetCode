@@ -1,4 +1,4 @@
-package LeetCode.twopoints;
+package LeetCode.TwoPoints;
 
 public class NO845 {
     public static int longestMountain(int[] arr) {

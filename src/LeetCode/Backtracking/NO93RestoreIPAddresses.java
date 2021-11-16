@@ -18,51 +18,44 @@ import java.util.List;
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
 public class NO93RestoreIPAddresses {
-    private static List<String> list=new ArrayList<>();
-    private  static  int n=0;
-    private static  List<String> list_ip=new ArrayList<>();
-    public static List<String> restoreIpAddresses(String s) {
-
-        n=s.length();
-        dfs(s,0);
+    static List<String> list=new ArrayList<>();
+    static  int length=0;
+    static List<String> list_ip=new ArrayList<>();
+    public static List<String> restoreIpAddresses(String ip) {
+        length=ip.length();
+        if(length>12)return list;
+        dfs(ip,0);
         return list;
     }
 
-    private static void dfs(String s, int index) {
-
-        if(list_ip.size()+(n-index+1)<4)return;
-        if (list_ip.size() == 4 && index >= n) {
-
-
-           StringBuffer s1=new StringBuffer();
-           for(String s2:list_ip)s1.append(s2).append('.');
-           s1.deleteCharAt(s1.length()-1);
-           list.add(s1.toString());
-            return;
-
-        }
-        if (index >= n) return;
-
-        for (int i = index + 1; i <=n; ++i) {
-            String p = s.substring(index, i);
-
-            if (check_ip(p)) {
-                list_ip.add(p);
-
+    private static void dfs(String ip, int index) {
+        if((list_ip.size())+(length-index+1)<=4)return;
+        if(list_ip.size()==4&&index>=length){
+            StringBuffer res=new StringBuffer();
+            for(String p:list_ip){
+                res.append(p).append('.');
             }
-            else continue;
-            dfs(s,i);
-          list_ip.remove(list_ip.size()-1);
+            res.deleteCharAt(res.length()-1);
+            list.add(res.toString());
+        }
+        if(index>=length)return;
+        for(int i=index+1;i<=length;++i){
+            String ipCheck=ip.substring(index,i);
+            if(check(ipCheck)){
+                list_ip.add(ipCheck);
+            }
+            else  continue;
+            dfs(ip,i);
+            list_ip.remove(list_ip.size()-1);
         }
     }
-        private static boolean check_ip(String p) {
-        if(p.length()>3)return false;
-        char[] chars=p.toCharArray();
-        if(chars[0]=='0'&&p.length()!=1)return false;
-           int number= Integer.parseInt(p);
 
+    private static boolean check(String ipCheck) {
+        if(ipCheck.length()>3)return false;
+        if(ipCheck.charAt(0)=='0'&&ipCheck.length()>1)return false;
+        int number=Integer.parseInt(ipCheck);
         return number<=255&&number>=0;
-        }
+    }
 
     public static void main(String[] args) {
         String IP="010010";
@@ -70,6 +63,10 @@ public class NO93RestoreIPAddresses {
         System.out.println("_____________");
         for(String s:list) System.out.println(s);
     }
+
+
+
+
 }
 
 

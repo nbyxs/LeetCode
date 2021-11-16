@@ -58,6 +58,9 @@ public class SynchronizedDemo {
         // 返回 2
         // 返回 False
 
+        String a="123";
+        Integer s=Integer.parseInt(a);
+        System.out.println(s);
 
     }
 }

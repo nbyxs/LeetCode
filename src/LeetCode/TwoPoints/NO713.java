@@ -1,4 +1,4 @@
-package LeetCode.twopoints;
+package LeetCode.TwoPoints;
 
 public class NO713 {
     public  static int numSubarrayProductLessThanK(int[] nums, int k) {

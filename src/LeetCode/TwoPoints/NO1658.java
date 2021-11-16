@@ -1,4 +1,4 @@
-package LeetCode.twopoints;
+package LeetCode.TwoPoints;
 
 public class NO1658 {
     //找最短将x减为0的次数（每次减去的是最左或最右的数）即找最长连续子数组使得和为sum-x

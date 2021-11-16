@@ -1,4 +1,4 @@
-package LeetCode.twopoints;
+package LeetCode.TwoPoints;
 
 public class NO424 {
     public int characterReplacement(String s, int k) {

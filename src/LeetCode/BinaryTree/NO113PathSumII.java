@@ -36,36 +36,19 @@ public class NO113PathSumII {
         }
     }
 
-    public  static List<List<Integer>> pathSum(TreeNode root, int targetSum) {
-
-
+    public static List<List<Integer>> pathSum(TreeNode root, int targetSum) {
         if(root==null)return res;
         search(root,targetSum);
         return res;
     }
 
-    private static void search(TreeNode root, List<List<Integer>> list, List<Integer> res, int targetSum) {
+    private static void search(TreeNode root, int targetSum) {
         if(root==null)return;
         targetSum-=root.val;
-        res.add(root.val);
-        if(root.left==null&&root.right==null&&targetSum==0){
-
-
-            list.add(new ArrayList<>(res));
-
-        }
-
-        search(root.left,list,res,targetSum);
-        search(root.right,list,res,targetSum);
-        res.remove(res.size()-1);
-}
-
-    private static void search(TreeNode root, int targetSum){
-        if(root==null||targetSum<0)return;
-        targetSum-=root.val;
         list.add(root.val);
+
         if(root.left==null&&root.right==null&&targetSum==0){
-            res.add(new ArrayList<>(list));
+           res.add(new ArrayList<>(list));
         }
         search(root.left,targetSum);
         search(root.right,targetSum);
